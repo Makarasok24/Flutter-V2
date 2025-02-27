@@ -1,9 +1,10 @@
+import 'package:blablacar/widgets/actions/bla_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/ride_pref/ride_pref.dart';
 import '../../service/ride_prefs_service.dart';
 import '../../theme/theme.dart';
- 
+
 import 'widgets/ride_pref_form.dart';
 import 'widgets/ride_pref_history_tile.dart';
 
@@ -22,12 +23,8 @@ class RidePrefScreen extends StatefulWidget {
 }
 
 class _RidePrefScreenState extends State<RidePrefScreen> {
-
-  
   onRidePrefSelected(RidePref ridePref) {
- 
-   // 1 - Navigate to the rides screen (with a buttom to top animation) 
-    
+    // 1 - Navigate to the rides screen (with a buttom to top animation)
   }
 
   @override
@@ -56,16 +53,9 @@ class _RidePrefScreenState extends State<RidePrefScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
-
-
                   // 2.1 Display the Form to input the ride preferences
-                  RidePrefForm(initRidePref: RidePrefService.currentRidePref,),
+                  RidePrefForm(initRidePref: RidePrefService.currentRidePref),
                   SizedBox(height: BlaSpacings.m),
-
-
-
-
 
                   // 2.2 Optionally display a list of past preferences
                   SizedBox(
@@ -74,10 +64,14 @@ class _RidePrefScreenState extends State<RidePrefScreen> {
                       shrinkWrap: true, // Fix ListView height issue
                       physics: AlwaysScrollableScrollPhysics(),
                       itemCount: RidePrefService.ridePrefsHistory.length,
-                      itemBuilder: (ctx, index) => RidePrefHistoryTile(
-                        ridePref: RidePrefService.ridePrefsHistory[index],
-                        onPressed: () => onRidePrefSelected(RidePrefService.ridePrefsHistory[index]),
-                      ),
+                      itemBuilder:
+                          (ctx, index) => RidePrefHistoryTile(
+                            ridePref: RidePrefService.ridePrefsHistory[index],
+                            onPressed:
+                                () => onRidePrefSelected(
+                                  RidePrefService.ridePrefsHistory[index],
+                                ),
+                          ),
                     ),
                   ),
                 ],
@@ -105,4 +99,3 @@ class BlaBackground extends StatelessWidget {
     );
   }
 }
- 
