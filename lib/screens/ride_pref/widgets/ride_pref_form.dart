@@ -59,9 +59,11 @@ class _RidePrefFormState extends State<RidePrefForm> {
   // Handle events
   // ----------------------------------
   void departurePressed() async {
-    Location? selectedDeparture = await Navigator.of(
-      context,
-    ).push<Location>(MaterialPageRoute(builder: (ctx) => BlaLocationPicker()));
+    Location? selectedDeparture = await Navigator.of(context).push<Location>(
+      MaterialPageRoute(
+        builder: (ctx) => BlaLocationPicker(initLocation: departure),
+      ),
+    );
 
     if (selectedDeparture != null) {
       setState(() {
@@ -71,9 +73,11 @@ class _RidePrefFormState extends State<RidePrefForm> {
   }
 
   void arrivalPressed() async {
-    Location? selectedArrival = await Navigator.of(
-      context,
-    ).push<Location>(MaterialPageRoute(builder: (ctx) => BlaLocationPicker()));
+    Location? selectedArrival = await Navigator.of(context).push<Location>(
+      MaterialPageRoute(
+        builder: (ctx) => BlaLocationPicker(initLocation: arrival),
+      ),
+    );
 
     if (selectedArrival != null) {
       setState(() {
@@ -100,7 +104,6 @@ class _RidePrefFormState extends State<RidePrefForm> {
   String get arrivalLabel => arrival != null ? arrival!.name : "Going to";
   String get dateLabel => DateTimeUtils.formatDateTime(departureDate);
   String get seateLabel => requestedSeats.toString();
-
 
   // ----------------------------------
   // Build the widgets
